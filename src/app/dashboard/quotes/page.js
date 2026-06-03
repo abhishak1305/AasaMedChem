@@ -18,16 +18,17 @@ export default function SellerQuotesPage() {
   const [clientEmail, setClientEmail] = useState("");
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
   const loadData = async () => {
     const list = await getSellerQuotations();
     const prods = await getProducts();
     setQuotationsList(list);
     setProductsList(prods);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadData();
+  }, []);
 
   const handleOpenCreate = () => {
     setClientName("");
@@ -170,7 +171,7 @@ export default function SellerQuotesPage() {
             ))}
             {quotationsList.length === 0 && (
               <tr>
-                <td colSpan="5" style={styles.emptyText}>No quotations created yet. Click "New Quotation" to start.</td>
+                <td colSpan="5" style={styles.emptyText}>No quotations created yet. Click &quot;New Quotation&quot; to start.</td>
               </tr>
             )}
           </tbody>

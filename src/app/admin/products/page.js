@@ -24,14 +24,15 @@ export default function AdminProductsPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    loadProducts();
-  }, []);
-
   const loadProducts = async () => {
     const list = await getProducts();
     setProductsList(list);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadProducts();
+  }, []);
 
   const handleDimensionChange = (e) => {
     const dimension = e.target.value;
@@ -202,7 +203,7 @@ export default function AdminProductsPage() {
             })}
             {productsList.length === 0 && (
               <tr>
-                <td colSpan="8" style={styles.emptyText}>No products configured yet. Click "Add Product" to create one.</td>
+                <td colSpan="8" style={styles.emptyText}>No products configured yet. Click &quot;Add Product&quot; to create one.</td>
               </tr>
             )}
           </tbody>

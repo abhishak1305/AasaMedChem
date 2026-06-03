@@ -12,14 +12,15 @@ export default function AdminQuotesPage() {
   const [loading, setLoading] = useState(false);
   const [actionError, setActionError] = useState("");
 
-  useEffect(() => {
-    loadQuotes();
-  }, []);
-
   const loadQuotes = async () => {
     const list = await getAllQuotations();
     setQuotesList(list);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadQuotes();
+  }, []);
 
   const handleOpenDetail = async (id) => {
     setSelectedQuoteId(id);

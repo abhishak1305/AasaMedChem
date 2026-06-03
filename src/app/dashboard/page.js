@@ -19,12 +19,6 @@ export default function DashboardOverview() {
   const [stats, setStats] = useState({ products: 0, pendingQuotes: 0, orders: 0, sellers: 1 });
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (role === "ADMIN") {
-      loadStats();
-    }
-  }, [role]);
-
   const loadStats = async () => {
     try {
       const products = await getProducts();
@@ -45,6 +39,13 @@ export default function DashboardOverview() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (role === "ADMIN") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      loadStats();
+    }
+  }, [role]);
 
   if (role === "ADMIN") {
     return (

@@ -9,14 +9,15 @@ export default function SellerProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [dimensionFilter, setDimensionFilter] = useState("ALL");
 
-  useEffect(() => {
-    loadProducts();
-  }, []);
-
   const loadProducts = async () => {
     const list = await getProducts();
     setProductsList(list);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadProducts();
+  }, []);
 
   const filteredProducts = productsList.filter((product) => {
     const matchesSearch = 
